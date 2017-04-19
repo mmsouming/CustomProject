@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/tv_sucess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:text="购买成功！"
+        android:textColor="#03a8f4"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/tv_tenant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_sucess"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="40dp"
+        android:text="商户名称：" />
+
+    <TextView
+        android:id="@+id/tv_tenantname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tv_tenant"
+        android:layout_below="@+id/tv_sucess"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/tv_tenant"
+        />
+
+    <TextView
+        android:id="@+id/tv_deal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/tv_tenant"
+        android:layout_below="@+id/tv_tenant"
+        android:layout_marginTop="10dp"
+        android:text="交易单号：" />
+
+    <TextView
+        android:id="@+id/tv_ordertime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tv_order"
+        android:layout_below="@+id/tv_sucess"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/tv_tenant"
+        android:text="2016-2-17  29:90" />
+
+    <TextView
+        android:id="@+id/tv_moeny"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/tv_tenant"
+        android:layout_below="@+id/tv_order"
+        android:layout_marginTop="10dp"
+        android:text="订单总金额：" />
+
+    <TextView
+        android:id="@+id/tv_phonenumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tv_phone"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/tv_tenant"
+         />
+
+    <TextView
+        android:id="@+id/tv_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/tv_tenant"
+        android:layout_below="@+id/tv_phone"
+        android:layout_marginTop="10dp"
+        android:text="订单状态：" />
+
+    <TextView
+        android:id="@+id/tv_orderstate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tv_state"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/tv_tenant"
+        android:text="交易成功"
+        android:textColor="#03a8f4" />
+
+    <TextView
+        android:id="@+id/tv_dealnumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2017239459860"
+        android:layout_alignBaseline="@+id/tv_deal"
+        android:layout_alignBottom="@+id/tv_deal"
+        android:layout_alignLeft="@+id/tv_tenantname"
+        android:layout_alignStart="@+id/tv_tenantname" />
+
+    <TextView
+        android:id="@+id/tv_phone"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="手机号码："
+        android:layout_below="@+id/tv_moeny"
+        android:layout_toLeftOf="@+id/tv_phonenumber"
+        android:layout_toStartOf="@+id/tv_phonenumber" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:orientation="vertical"
+        android:layout_below="@+id/tv_orderdetail"
+        android:layout_alignLeft="@+id/tv_orderdetail"
+        android:layout_alignStart="@+id/tv_orderdetail">
+
+
+        <com.app.mingshanmo.mylibrary.commonwidget.NoScrollListview
+            android:id="@+id/lv_pro_list"
+            android:divider="@color/main_bg"
+            android:dividerHeight="1dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.app.mingshanmo.mylibrary.commonwidget.NoScrollListview>
+
+
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="下单时间："
+        android:layout_below="@+id/tv_deal"
+        android:layout_toLeftOf="@+id/tv_ordertime"
+        android:layout_toStartOf="@+id/tv_ordertime" />
+
+    <TextView
+        android:id="@+id/tv_allmoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_moeny"
+        android:layout_alignBottom="@+id/tv_moeny"
+        android:layout_alignLeft="@+id/tv_ordertime"
+        android:layout_alignStart="@+id/tv_ordertime" />
+
+    <TextView
+        android:id="@+id/tv_orderdetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
+        android:text="订单详细："
+        android:textSize="18dp"
+        android:textColor="@color/main_color"
+        android:layout_below="@+id/tv_state"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp" />
+
+
+</RelativeLayout>
