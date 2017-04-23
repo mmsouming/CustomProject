@@ -5,7 +5,5 @@ package com.rkele.app;
  */
 
 public class test {
-//    ／／这是用来测试git
-//    git分支学习
-//    git分支学习
+//
 }
