@@ -6,5 +6,8 @@ package com.rkele.app.app;
 
 public class test {
 
+private  int i=0;
+    private int b = 11;
 
+    private int c =0;
 }
