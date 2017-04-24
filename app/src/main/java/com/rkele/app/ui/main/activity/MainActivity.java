@@ -340,14 +340,18 @@ public class MainActivity extends BaseActivity {
             ToastUitl.showShort("请选择对应商品数量");
             return;
         }
-        if (vouchersStringBuilder.length() > 0 && TextUtils.isEmpty(tvPhone.getText())) {
+        if ( TextUtils.isEmpty(tvPhone.getText())) {
             ToastUitl.showShort("请输入手机号码");
+            return;
 
+        }
+        if (vouchersStringBuilder.length() > 0){
+            map.put("vouchers", vouchersStringBuilder.toString());
         }
 
         map.put("proIds", proIdsStringBuilder.toString());
         map.put("numbers", numbersStringBuilder.toString());
-        map.put("vouchers", vouchersStringBuilder.toString());
+
         map.put("phone", tvPhone.getText().toString());
         map.put("token", SPUtils.get(mContext, SPUtils.TOKEN, "") + "");
         mRxManager.add(Api.getDefault().OrderByVoucher(map).compose(RxSchedulers.<BaseData<OrderByVoucherBean>>io_main()).subscribe(new RxGetDataSubscriber<BaseData<OrderByVoucherBean>>(mContext, true) {

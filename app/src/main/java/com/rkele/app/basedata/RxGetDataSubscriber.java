@@ -1,7 +1,9 @@
 package com.rkele.app.basedata;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.text.TextUtils;
 
 import com.app.mingshanmo.mylibrary.baseapp.BaseApplication;
@@ -10,6 +12,7 @@ import com.app.mingshanmo.mylibrary.commonutils.NetWorkUtils;
 import com.app.mingshanmo.mylibrary.commonutils.ToastUitl;
 import com.app.mingshanmo.mylibrary.commonwidget.LoadingDialog;
 import com.rkele.app.R;
+import com.rkele.app.ui.login.activity.LoginActivity;
 
 import rx.Subscriber;
 
@@ -100,7 +103,11 @@ public abstract class RxGetDataSubscriber<T extends BaseData> extends Subscriber
             _onNext(t);
             getDate(t.getData());
 
-        } else {
+        } else if(!TextUtils.isEmpty(t.getStatus()) && t.getStatus().equals("400")){
+
+            mContext.startActivity(new Intent(mContext, LoginActivity.class));
+            ((Activity) mContext).finish();
+        }else {
             _onError(t.getDesc());
             ToastUitl.showShort(t.getDesc());
         }
