@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="20dp">
+
+    <ImageView
+        android:id="@+id/iv_product"
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="*6罐"
+        android:textColor="@android:color/background_dark"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:gravity="right"
+        android:orientation="vertical">
+
+        <TextView
+            android:textSize="14sp"
+            android:id="@+id/tv_product_indtorduce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="加多宝凉茶罐装310ml＊6" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@drawable/circular_et_bg"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <Button
+
+                android:id="@+id/btn_reduce"
+                android:layout_width="40dp"
+                android:gravity="center"
+                android:background="@color/transparent"
+                android:layout_height="match_parent"
+                android:text="-"
+                android:textSize="16sp"/>
+
+            <EditText
+                android:clickable="false"
+                android:enabled="false"
+                android:focusable="false"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:id="@+id/et_product_number"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:paddingBottom="5dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="5dp"
+                android:inputType="number"
+                android:textColor="@color/main_color"
+                android:text="14"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btn_add"
+                android:textSize="16sp"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:text="+"
+                android:textColor="#333333"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_moneydesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="$  20元／6罐"
+            android:textColor="#03a8f4" />
+    </LinearLayout>
+</LinearLayout>
