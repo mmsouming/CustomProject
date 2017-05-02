@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by ${mms} on 2017/3/2.
  */
 
-public class OrderByVoucherBean implements Serializable{
+public class OrderByVoucherBean implements Serializable {
 
     /**
      * orderCode : 201702261100459641
@@ -25,6 +25,15 @@ public class OrderByVoucherBean implements Serializable{
     private String totalMoney;
     private String vorcherStatus;
     private String voucherMoney;
+    private String phone;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public String getOrderCode() {
         return orderCode;

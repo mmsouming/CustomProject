@@ -82,6 +82,7 @@ public class MainActivity extends BaseActivity {
     private boolean flag = false;
     private Map<String, Object> map;
     private String unit = "元";
+    private int userCode = -1;
 
     @Override
     public int getLayoutId() {
@@ -131,11 +132,13 @@ public class MainActivity extends BaseActivity {
                 case "0000000000":  //走代金卷支付流程
                     lvVoucher.setVisibility(View.VISIBLE);
                     btnAddvolume.setVisibility(View.VISIBLE);
+                    userCode = 1;
 
                     break;
                 case "0000000002": //湖北省接入
                     lvVoucher.setVisibility(View.GONE);
                     btnAddvolume.setVisibility(View.GONE);
+                    userCode = 2;
                     break;
             }
 
@@ -298,10 +301,6 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.btn_submit_order:
 
-                if (null != SPUtils.get(mContext, SPUtils.MERNUMBER, "")&&TextUtils.equals(SPUtils.get(mContext, SPUtils.MERNUMBER, "").toString(), "000000002")) {
-                    //走積分流程
-                    return;
-                }
 
                 confirmOrder();
 
@@ -386,7 +385,14 @@ public class MainActivity extends BaseActivity {
         mRxManager.add(Api.getDefault().OrderByVoucher(map).compose(RxSchedulers.<BaseData<OrderByVoucherBean>>io_main()).subscribe(new RxGetDataSubscriber<BaseData<OrderByVoucherBean>>(mContext, true) {
             @Override
             protected void _onNext(BaseData<OrderByVoucherBean> orderByVoucherBeanBaseData) {
-                startActivity(new Intent(mContext, ConfirmOrderActivity.class).putExtra(AppConstant.ORDERINFO, orderByVoucherBeanBaseData.getData()));
+
+                if (userCode == 1) {
+                    startActivity(new Intent(mContext, ConfirmOrderActivity.class).putExtra(AppConstant.ORDERINFO, orderByVoucherBeanBaseData.getData()));
+
+                } else if (userCode == 2) {
+                    startActivity(new Intent(mContext, ConfirmPointsActivity.class).putExtra(AppConstant.ORDERINFO, orderByVoucherBeanBaseData.getData()));
+
+                }
             }
         }));
 
