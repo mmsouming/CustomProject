@@ -3,5 +3,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="svn" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/commlibrary" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/payapplication" vcs="svn" />
   </component>
 </project>

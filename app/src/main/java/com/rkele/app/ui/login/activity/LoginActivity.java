@@ -110,6 +110,7 @@ public class LoginActivity extends BaseActivity {
 
                 SPUtils.put(mContext, SPUtils.MERNUMBER, loginBeanBaseData.getData().getMerNumber());
                 SPUtils.put(mContext, SPUtils.NAME, loginBeanBaseData.getData().getName());
+                SPUtils.put(mContext, SPUtils.PRICEUNIT, loginBeanBaseData.getData().getPriceUnit());
 
                 startActivity(new Intent(mContext, MainActivity.class));
                 finish();

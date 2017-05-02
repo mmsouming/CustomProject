@@ -18,6 +18,16 @@ public class LoginBean {
     private String merNumber;
     private String name;
     private String merId;
+    private String priceUnit;
+
+
+    public String getPriceUnit() {
+        return priceUnit;
+    }
+
+    public void setPriceUnit(String priceUnit) {
+        this.priceUnit = priceUnit;
+    }
 
     public String getToken() {
         return token;

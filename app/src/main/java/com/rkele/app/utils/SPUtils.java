@@ -20,6 +20,7 @@ public class SPUtils {
     public static final String MERID = "merId";
     public static final String NAME = "name";
     public static final String MERNUMBER = "merNumber";
+    public static final String PRICEUNIT = "priceUnit";
 
     /**
      * 保存数据的方法，我们需要拿到保存数据的具体类型，然后根据类型调用不同的保存方法

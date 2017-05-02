@@ -81,6 +81,7 @@ public class MainActivity extends BaseActivity {
     private CommonAdapter<VoucherBean> vouchAdapter;
     private boolean flag = false;
     private Map<String, Object> map;
+    private String unit = "元";
 
     @Override
     public int getLayoutId() {
@@ -95,6 +96,9 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        if (null!=SPUtils.get(mContext,SPUtils.PRICEUNIT,"")){
+        unit = String.valueOf(SPUtils.get(mContext,SPUtils.PRICEUNIT,""));
+        }
         map = new ArrayMap<>();
 
         toolbar.setNavigationIcon(R.drawable.back1);
@@ -219,7 +223,9 @@ public class MainActivity extends BaseActivity {
             BigDecimal p = BigDecimal.valueOf(commonAdapter.getDatas().get(i).getMoney() * commonAdapter.getDatas().get(i).getNum());
             price = price.add(p);
         }
-        tvAmount.setText("¥" + price + "元");
+
+
+        tvAmount.setText("¥" + price + unit);
 
     }
 
@@ -293,7 +299,6 @@ public class MainActivity extends BaseActivity {
             public void onClick(View v) {
 
                 SPUtils.clear(mContext);
-
                 customDialog.cancel();
                 Intent intent = new Intent(mContext, LoginActivity.class);
                 startActivity(intent);
