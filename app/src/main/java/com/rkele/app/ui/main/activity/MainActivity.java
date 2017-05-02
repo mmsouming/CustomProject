@@ -96,8 +96,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        if (null!=SPUtils.get(mContext,SPUtils.PRICEUNIT,"")){
-        unit = String.valueOf(SPUtils.get(mContext,SPUtils.PRICEUNIT,""));
+        if (null != SPUtils.get(mContext, SPUtils.PRICEUNIT, "")) {
+            unit = String.valueOf(SPUtils.get(mContext, SPUtils.PRICEUNIT, ""));
         }
         map = new ArrayMap<>();
 
@@ -117,12 +117,29 @@ public class MainActivity extends BaseActivity {
 //        rightIv.setImageResource(R.mipmap.ic_setting);
         tvRight.setText("退出");
         tvRight.setTextColor(ContextCompat.getColor(mContext, R.color.white));
-
+        initSetView();
         initData();
         initList();
         initVouch();
 
 
+    }
+
+    private void initSetView() {
+        if (null != SPUtils.get(mContext, SPUtils.MERNUMBER, "")) {
+            switch (SPUtils.get(mContext, SPUtils.MERNUMBER, "").toString()) {
+                case "0000000000":  //走代金卷支付流程
+                    lvVoucher.setVisibility(View.VISIBLE);
+                    btnAddvolume.setVisibility(View.VISIBLE);
+
+                    break;
+                case "0000000002": //湖北省接入
+                    lvVoucher.setVisibility(View.GONE);
+                    btnAddvolume.setVisibility(View.GONE);
+                    break;
+            }
+
+        }
     }
 
     private void initVouch() {
@@ -144,10 +161,12 @@ public class MainActivity extends BaseActivity {
 
             }
         };
+
         lvVoucher.setAdapter(vouchAdapter);
         VoucherBean voucherBean = new VoucherBean();
         list.add(voucherBean);
         vouchAdapter.setDatas(list);
+
     }
 
     private void initaddchooselister(EditText editText, final int position) {
@@ -279,6 +298,11 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.btn_submit_order:
 
+                if (null != SPUtils.get(mContext, SPUtils.MERNUMBER, "")&&TextUtils.equals(SPUtils.get(mContext, SPUtils.MERNUMBER, "").toString(), "000000002")) {
+                    //走積分流程
+                    return;
+                }
+
                 confirmOrder();
 
                 break;
@@ -345,12 +369,12 @@ public class MainActivity extends BaseActivity {
             ToastUitl.showShort("请选择对应商品数量");
             return;
         }
-        if ( TextUtils.isEmpty(tvPhone.getText())) {
+        if (TextUtils.isEmpty(tvPhone.getText())) {
             ToastUitl.showShort("请输入手机号码");
             return;
 
         }
-        if (vouchersStringBuilder.length() > 0){
+        if (vouchersStringBuilder.length() > 0) {
             map.put("vouchers", vouchersStringBuilder.toString());
         }
 
