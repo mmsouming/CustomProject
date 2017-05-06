@@ -53,7 +53,7 @@ public interface ApiService {
 //            @Path("type") String type,
 //            @Path("startPage") int startPage);
 //}
-    @POST("/gdone/action/merchert/login")
+    @POST(ApiConstants.PRODUCTBASEURL+"merchert/login")
     Observable<BaseData<LoginBean>> login(
             @Query("name") String name,
             @Query("password") String password);
@@ -66,7 +66,7 @@ public interface ApiService {
      * @param token
      * @return
      */
-    @POST("/gdone/action/merchert/findProduct")
+    @POST(ApiConstants.PRODUCTBASEURL+"merchert/findProduct")
     Observable<BaseData<List<FindProductBean>>> findProduct(
             @Query("merid") String merid,
             @Query("token") String token);
@@ -82,7 +82,7 @@ public interface ApiService {
      * @param token
      * @return
      */
-    @POST("/gdone/action/voucher/OrderByVoucher")
+    @POST(ApiConstants.PRODUCTBASEURL+"voucher/OrderByVoucher")
     Observable<BaseData<OrderByVoucherBean>> OrderByVoucher(
             @Query("proIds") String proIds,
             @Query("numbers") String numbers,
@@ -95,7 +95,7 @@ public interface ApiService {
      *
      * @return
      */
-    @POST("/gdone/action/voucher/OrderByVoucher")
+    @POST(ApiConstants.PRODUCTBASEURL+"voucher/OrderByVoucher")
     Observable<BaseData<OrderByVoucherBean>> OrderByVoucher(@QueryMap Map<String, Object> map);
 
     /**
@@ -107,14 +107,14 @@ public interface ApiService {
      * @param token
      * @return
      */
-    @POST("/gdone/action/voucher/hxOrderByVoucher")
+    @POST(ApiConstants.PRODUCTBASEURL+"voucher/hxOrderByVoucher")
     Observable<BaseData<HxOrderByVoucherBean>> hxOrderByVoucher(
             @Query("orderCode") String orderCode,
             @Query("vorcherStatus") String vorcherStatus,
             @Query("vorcherCode") String vorcherCode,
             @Query("token") String token);
 
-    @POST("/gdone/action/voucher/hxOrderByVoucher")
+    @POST(ApiConstants.PRODUCTBASEURL+"voucher/hxOrderByVoucher")
     Observable<BaseData<HxOrderByVoucherBean>> hxOrderByVoucher(@QueryMap Map<String, Object> map);
 
 }
