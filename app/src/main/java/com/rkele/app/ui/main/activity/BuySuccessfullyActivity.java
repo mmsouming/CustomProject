@@ -86,8 +86,8 @@ public class BuySuccessfullyActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        toolbar.setTitle("购买成功");
         registerPrint();
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

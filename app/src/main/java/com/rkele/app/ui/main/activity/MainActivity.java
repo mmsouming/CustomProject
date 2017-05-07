@@ -2,6 +2,7 @@ package com.rkele.app.ui.main.activity;
 
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.util.ArrayMap;
@@ -43,6 +44,7 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
@@ -79,6 +81,8 @@ public class MainActivity extends BaseActivity {
     private CommonAdapter<VoucherBean> vouchAdapter;
     private boolean flag = false;
     private Map<String, Object> map;
+    private String unit = "元";
+    private int userCode = -1;
 
     @Override
     public int getLayoutId() {
@@ -93,6 +97,9 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        if (null != SPUtils.get(mContext, SPUtils.PRICEUNIT, "")) {
+            unit = String.valueOf(SPUtils.get(mContext, SPUtils.PRICEUNIT, ""));
+        }
         map = new ArrayMap<>();
 
         toolbar.setNavigationIcon(R.drawable.back1);
@@ -111,12 +118,31 @@ public class MainActivity extends BaseActivity {
 //        rightIv.setImageResource(R.mipmap.ic_setting);
         tvRight.setText("退出");
         tvRight.setTextColor(ContextCompat.getColor(mContext, R.color.white));
-
+        initSetView();
         initData();
         initList();
         initVouch();
 
 
+    }
+
+    private void initSetView() {
+        if (null != SPUtils.get(mContext, SPUtils.MERNUMBER, "")) {
+            switch (SPUtils.get(mContext, SPUtils.MERNUMBER, "").toString()) {
+                case "0000000000":  //走代金卷支付流程
+                    lvVoucher.setVisibility(View.VISIBLE);
+                    btnAddvolume.setVisibility(View.VISIBLE);
+                    userCode = 1;
+
+                    break;
+                case "0000000002": //湖北省接入
+                    lvVoucher.setVisibility(View.GONE);
+                    btnAddvolume.setVisibility(View.GONE);
+                    userCode = 2;
+                    break;
+            }
+
+        }
     }
 
     private void initVouch() {
@@ -138,10 +164,12 @@ public class MainActivity extends BaseActivity {
 
             }
         };
+
         lvVoucher.setAdapter(vouchAdapter);
         VoucherBean voucherBean = new VoucherBean();
         list.add(voucherBean);
         vouchAdapter.setDatas(list);
+
     }
 
     private void initaddchooselister(EditText editText, final int position) {
@@ -217,7 +245,9 @@ public class MainActivity extends BaseActivity {
             BigDecimal p = BigDecimal.valueOf(commonAdapter.getDatas().get(i).getMoney() * commonAdapter.getDatas().get(i).getNum());
             price = price.add(p);
         }
-        tvAmount.setText("¥" + price + "元");
+
+
+        tvAmount.setText("¥" + price + unit);
 
     }
 
@@ -242,7 +272,7 @@ public class MainActivity extends BaseActivity {
 
     private void initData() {
         mRxManager.add(Api.getDefault().findProduct(SPUtils.get(mContext, SPUtils.MERID, "").toString(), SPUtils.get(mContext, SPUtils.TOKEN, "").toString()).
-                compose(RxSchedulers.<BaseData<List<FindProductBean>>>io_main()).subscribe(new RxGetDataSubscriber<BaseData<List<FindProductBean>>>(mContext, true) {
+                compose(RxSchedulers.<BaseData<List<FindProductBean>>>io_main()).subscribe(new RxGetDataSubscriber<BaseData<List<FindProductBean>>>(mContext, false) {
             @Override
             protected void _onNext(BaseData<List<FindProductBean>> listBaseData) {
                 commonAdapter.setDatas(listBaseData.getData());
@@ -271,6 +301,7 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.btn_submit_order:
 
+
                 confirmOrder();
 
                 break;
@@ -291,7 +322,6 @@ public class MainActivity extends BaseActivity {
             public void onClick(View v) {
 
                 SPUtils.clear(mContext);
-
                 customDialog.cancel();
                 Intent intent = new Intent(mContext, LoginActivity.class);
                 startActivity(intent);
@@ -340,19 +370,30 @@ public class MainActivity extends BaseActivity {
         }
         if (TextUtils.isEmpty(tvPhone.getText())) {
             ToastUitl.showShort("请输入手机号码");
+            return;
 
         }
         if (vouchersStringBuilder.length() > 0) {
             map.put("vouchers", vouchersStringBuilder.toString());
         }
+
         map.put("proIds", proIdsStringBuilder.toString());
         map.put("numbers", numbersStringBuilder.toString());
+
         map.put("phone", tvPhone.getText().toString());
         map.put("token", SPUtils.get(mContext, SPUtils.TOKEN, "") + "");
+        LogUtils.logd(map.toString());
         mRxManager.add(Api.getDefault().OrderByVoucher(map).compose(RxSchedulers.<BaseData<OrderByVoucherBean>>io_main()).subscribe(new RxGetDataSubscriber<BaseData<OrderByVoucherBean>>(mContext, true) {
             @Override
             protected void _onNext(BaseData<OrderByVoucherBean> orderByVoucherBeanBaseData) {
-                startActivity(new Intent(mContext, ConfirmOrderActivity.class).putExtra(AppConstant.ORDERINFO, orderByVoucherBeanBaseData.getData()));
+
+                if (userCode == 1) {
+                    startActivity(new Intent(mContext, ConfirmOrderActivity.class).putExtra(AppConstant.ORDERINFO, orderByVoucherBeanBaseData.getData()));
+
+                } else if (userCode == 2) {
+                    startActivity(new Intent(mContext, ConfirmPointsActivity.class).putExtra(AppConstant.ORDERINFO, orderByVoucherBeanBaseData.getData()));
+
+                }
             }
         }));
 

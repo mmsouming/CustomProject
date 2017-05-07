@@ -24,7 +24,20 @@ public class OrderByVoucherBean implements Serializable{
     private String hxMoney;
     private String totalMoney;
     private String vorcherStatus;
-    private String voucherMoney;
+    /**
+     * vorcherMoney : 34.0
+     */
+
+    private String vorcherMoney;
+    private String phone;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public String getOrderCode() {
         return orderCode;
@@ -74,11 +87,12 @@ public class OrderByVoucherBean implements Serializable{
         this.vorcherStatus = vorcherStatus;
     }
 
-    public String getVoucherMoney() {
-        return voucherMoney;
+
+    public String getVorcherMoney() {
+        return vorcherMoney;
     }
 
-    public void setVoucherMoney(String voucherMoney) {
-        this.voucherMoney = voucherMoney;
+    public void setVorcherMoney(String vorcherMoney) {
+        this.vorcherMoney = vorcherMoney;
     }
 }

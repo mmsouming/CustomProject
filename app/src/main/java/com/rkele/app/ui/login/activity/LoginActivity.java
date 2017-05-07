@@ -104,12 +104,15 @@ public class LoginActivity extends BaseActivity {
             @Override
             protected void _onNext(BaseData<LoginBean> loginBeanBaseData) {
                 SPUtils.put(mContext, SPUtils.ACCOUNT, tvBusinessName.getText().toString());
+
+                SPUtils.put(mContext, SPUtils.ACCOUNT, tvBusinessName.getText().toString());
                 SPUtils.put(mContext, SPUtils.PASSWORD, etPassword.getText().toString());
                 SPUtils.put(mContext, SPUtils.TOKEN, loginBeanBaseData.getData().getToken());
                 SPUtils.put(mContext, SPUtils.MERID, loginBeanBaseData.getData().getMerId());
 
                 SPUtils.put(mContext, SPUtils.MERNUMBER, loginBeanBaseData.getData().getMerNumber());
                 SPUtils.put(mContext, SPUtils.NAME, loginBeanBaseData.getData().getName());
+                SPUtils.put(mContext, SPUtils.PRICEUNIT, loginBeanBaseData.getData().getPriceUnit());
 
                 startActivity(new Intent(mContext, MainActivity.class));
                 finish();

@@ -38,6 +38,7 @@
         </activity>
         <activity android:name=".ui.main.activity.MainActivity" />
         <activity android:name=".ui.main.activity.ConfirmOrderActivity" />
+        <activity android:name=".ui.main.activity.ConfirmPointsActivity" />
         <activity
             android:name=".ui.main.activity.BuySuccessfullyActivity"
             android:label="@string/title_activity_buy_successfully"

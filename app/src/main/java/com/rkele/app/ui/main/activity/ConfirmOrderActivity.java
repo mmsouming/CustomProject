@@ -136,15 +136,11 @@ public class ConfirmOrderActivity extends BaseActivity {
 //
 //            tvCoupon.setText("" + orderByVoucherBean.getVorcherCode());//通兑劵码
 //        }
-        if (null != orderByVoucherBean.getVoucherMoney() && !TextUtils.isEmpty(orderByVoucherBean.getVoucherMoney())) {
+        if (null != orderByVoucherBean.getVorcherMoney() && !TextUtils.isEmpty(orderByVoucherBean.getVorcherMoney())) {
 
-            tvMoney.setText("¥" + orderByVoucherBean.getVoucherMoney());//通兑劵码金额
+            tvMoney.setText("¥" + orderByVoucherBean.getVorcherMoney());//通兑劵码金额
         } else {
             tvMoney.setText("¥" + "0.00");
-        }
-        if (null != orderByVoucherBean.getVoucherMoney() && !TextUtils.isEmpty(orderByVoucherBean.getVoucherMoney())) {
-
-            tvMoney.setText("¥" + orderByVoucherBean.getVoucherMoney());
         }
         if (null != orderByVoucherBean.getHxMoney() && !TextUtils.isEmpty(orderByVoucherBean.getHxMoney())) {
 
